@@ -1,0 +1,25 @@
+{
+    "name": "BPMjs",
+    "version":"0.0.1",
+    "description": "Library to deal with musical events based on tempo & time signature",
+    "main": [
+        "bpm.js"
+    ],
+    "keywords": [
+        "bpm",
+        "music",
+        "tempo",
+        "signature"
+    ],
+    "authors": [
+        "Pierre Bellon <bellon.pierre@gmail.com>"
+    ],
+    "licence": "MIT",
+    "ignore": [
+        "node_modules",
+        "**/.*",
+        "e2e"
+        "src"
+        "gulp"
+    ]
+}
