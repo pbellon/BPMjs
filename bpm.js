@@ -2,6 +2,10 @@
 
 'use 6to5';
 
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
@@ -81,7 +85,6 @@ var BPM = (function () {
             this.currentTick++;
 
             if (this.isPaused()) {
-                console.log('is paused !');
                 delete this.unpauseTick;
                 this._stopPlaying();
                 this._setInterval();
@@ -130,6 +133,14 @@ var BPM = (function () {
         value: function getSignature() {
             return this.signature;
         }
+    }, {
+        key: 'getPosition',
+        value: function getPosition() {
+            return {
+                tick: this.currentTick,
+                bar: this.currentBar
+            };
+        }
 
         // add a callback for every ticking
     }, {
@@ -177,15 +188,9 @@ var BPM = (function () {
     return BPM;
 })();
 
-(function (context) {
-    var bpm = {
-        init: function init(params) {
-            return new BPM(params);
-        }
-    };
-    if (typeof module === 'object') {
-        module.exports = bpm;
-    } else {
-        context.bpm = bpm;
+var bpm = {
+    init: function init(params) {
+        return new BPM(params);
     }
-}).call(undefined);
+};
+exports.bpm = bpm;

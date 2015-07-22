@@ -1,6 +1,7 @@
 'use strict';
 
-var bpm = require('../bpm.js');
+var bpmModule = require('../bpm.js');
+var bpm = bpmModule.bpm;
 var instance = null;
 var assert = require('assert');
 var chai = require('chai');

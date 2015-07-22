@@ -145,15 +145,8 @@ class BPM {
     }
 }
 
-(function(context){
-    let bpm = {
-        init(params){
-            return new BPM(params);
-        }
-    };
-    if(typeof module === 'object'){
-        module.exports = bpm;
-    } else {
-        context.bpm = bpm;
+export var bpm = {
+    init(params){
+        return new BPM(params);
     }
-}).call(this);
+};
