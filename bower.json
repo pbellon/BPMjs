@@ -1,7 +1,7 @@
 {
     "name": "BPMjs",
     "version":"0.0.1",
-    "description": "Library to deal with musical events based on tempo & time signature",
+    "description": "A library to deal with musical events based on tempo & time signature",
     "main": [
         "bpm.js"
     ],
