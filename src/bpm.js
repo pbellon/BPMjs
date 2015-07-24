@@ -163,10 +163,8 @@ class BPM {
     }
 }
 
-let bpm = {
+export var bpm = {
     init(params){
         return new BPM(params);
     }
 };
-
-export default bpm;
