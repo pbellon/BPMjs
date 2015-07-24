@@ -1,7 +1,6 @@
 'use strict';
 
-var bpmModule = require('../bpm.js');
-var bpm = bpmModule.bpm;
+var bpm = require('../bpm.js');
 var instance = null;
 var assert = require('assert');
 var chai = require('chai');
@@ -58,6 +57,22 @@ describe('BPM', function(){
             instance.play();
 
 
+        });
+    });
+
+    describe('#setBPM()', function(){
+        it('should take into account the new BPM even when playing is in progress',function(done){
+            var nbCalled = 0;
+            setTimeout(function(){
+                expect(nbCalled).to.be.equal(4);
+                done();
+            }, 1100);
+            instance.onTick(function(){
+                nbCalled++;
+            });
+            instance.play();
+            // raising BPM to 240 -> it should tick 4 time every seconds
+            instance.setBPM(240);
         });
     });
 });
