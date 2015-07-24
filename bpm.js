@@ -85,6 +85,7 @@ var BPM = (function () {
             this.currentTick++;
 
             if (this.isPaused()) {
+                console.log('is paused !');
                 delete this.unpauseTick;
                 this._stopPlaying();
                 this._setInterval();
@@ -193,4 +194,6 @@ var bpm = {
         return new BPM(params);
     }
 };
-exports.bpm = bpm;
+
+exports['default'] = bpm;
+module.exports = exports['default'];
