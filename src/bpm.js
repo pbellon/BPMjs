@@ -15,20 +15,24 @@ class BPM {
         if(onBarTick){
             this.onBarTickCallbacks.push(onBarTick);
         }
-        this.bpm = opts.bmp || 120;
-        // used to fire _onTick to regular intervals (in ms)
-        this.internalTick = (1/(this.bpm / 60))*1000;
-        this.signature =  opts.signature || [4,4];
+        this.bpm         = opts.bmp || 120;
+        this.signature   = opts.signature || [4,4];
         this.currentTick = 0;
-        this.currentBar = 0;
+        this.currentBar  = 0;
+        this._updateInternalInterval();
     }
     // Private API
     _getStamp(){
         return (new Date()).getTime();
     }
 
+    _updateInternalInterval(){
+        // used to fire _onTick to regular intervals (in ms)
+        this.internalTickInterval = (1/(this.bpm / 60))*1000;
+    }
+
     _setInterval(){
-        let tick = this.internalTick;
+        let tick = this.internalTickInterval;
         if(this.isPaused()){
             tick = this.unpauseTick;
         }
@@ -62,7 +66,6 @@ class BPM {
         this.currentTick++;
 
         if(this.isPaused()){
-            console.log('is paused !');
             delete this.unpauseTick;
             this._stopPlaying();
             this._setInterval();
@@ -103,6 +106,7 @@ class BPM {
     getSignature(){
         return this.signature;
     }
+
     getPosition(){
         return {
             tick: this.currentTick,
@@ -125,6 +129,20 @@ class BPM {
 
     }
 
+    setBPM(bpm){
+        this.bpm = bpm;
+        this._updateInternalInterval();
+        this.pause();
+        this.play();
+    }
+
+    setSignature(signature){
+        this.signature = signature;
+        this._updateInternalInterval();
+        this.pause();
+        this.play();
+    }
+
     // starts ticking
     play(){
         this._setInterval();
@@ -140,7 +158,7 @@ class BPM {
         if(this.isPlaying()){
             this._stopPlaying();
             // the next interval to use when play() is called again
-            this.unpauseTick = this.internalTick - (this._getStamp() - this.timestamp);
+            this.unpauseTick = this.internalTickInterval - (this._getStamp() - this.timestamp);
         }
     }
 }
