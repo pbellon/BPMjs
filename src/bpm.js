@@ -163,8 +163,6 @@ class BPM {
     }
 }
 
-export var bpm = {
-    init(params){
-        return new BPM(params);
-    }
-};
+export function init(params){
+    return new BPM(params);
+}
