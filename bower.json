@@ -1,7 +1,7 @@
 {
   "name": "BPMjs",
   "main": "bpm.js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "homepage": "https://github.com/pbellon/BPMjs",
   "keywords": [ "bpm", "music", "tempo", "signature" ],
   "authors": [
