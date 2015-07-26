@@ -122,7 +122,7 @@
             value: function _fireCallbacks(callbacks) {
                 for (var i in callbacks) {
                     var cb = callbacks[i];
-                    cb.call({ tick: this.currentTick, bar: this.currentBar });
+                    cb.call(this, { tick: this.currentTick, bar: this.currentBar });
                 }
             }
         }, {

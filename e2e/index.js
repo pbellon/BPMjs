@@ -27,6 +27,28 @@ describe('BPM', function(){
     });
 
     describe('#onTick()', function(){
+        it('should not call onTick until play() has been called', function(done){
+            var called = false;
+            instance.onTick(function(){
+                called = true;
+            });
+
+            setTimeout(function(){
+                expect(called).to.be.false;
+                done();
+            }, 600);
+        });
+
+        it('should transmit a position object when ticking to know the position', function(done){
+            instance.onTick(function(position){
+                expect(position).to.exist;
+                expect(position.tick).to.exist;
+                expect(position.bar).to.exist;
+                done();
+            });
+            instance.play();
+        });
+
         it('should tick the appropriate number of time depending on BPM given', function(done){
             var nbCalled = 0;
             setTimeout(function(){
