@@ -29,6 +29,10 @@ class BPM {
     _updateInternalInterval(){
         // used to fire _onTick to regular intervals (in ms)
         this.internalTickInterval = (1/(this.bpm / 60))*1000;
+        if(this.isPlaying()){
+            this.pause();
+            this.play();
+        }
     }
 
     _setInterval(){
@@ -132,15 +136,11 @@ class BPM {
     setBPM(bpm){
         this.bpm = bpm;
         this._updateInternalInterval();
-        this.pause();
-        this.play();
     }
 
     setSignature(signature){
         this.signature = signature;
         this._updateInternalInterval();
-        this.pause();
-        this.play();
     }
 
     // starts ticking
