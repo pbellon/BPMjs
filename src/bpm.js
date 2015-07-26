@@ -81,7 +81,7 @@ class BPM {
     _fireCallbacks(callbacks){
         for(let i in callbacks){
             let cb = callbacks[i];
-            cb.call({tick: this.currentTick, bar: this.currentBar});
+            cb.call(this, {tick: this.currentTick, bar: this.currentBar});
         }
     }
 
